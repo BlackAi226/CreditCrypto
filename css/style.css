@@ -57,10 +57,6 @@ nav ul.menu {
   gap: 15px;
 }
 
-nav ul.menu li {
-  margin: 5px 0;
-}
-
 nav ul.menu li a {
   color: #fff;
   font-weight: bold;
@@ -72,21 +68,6 @@ nav ul.menu li a {
 nav ul.menu li a:hover {
   background-color: #fff;
   color: #1a1a1a;
-}
-
-/* ===== Hamburger Menu ===== */
-.hamburger {
-  display: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: #fff;
-  margin-bottom: 5px;
-}
-
-nav ul.menu.open {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
 }
 
 /* ===== Main Sections ===== */
@@ -103,7 +84,6 @@ main {
   border-radius: 8px;
   text-align: center;
   margin-bottom: 30px;
-  position: relative;
 }
 
 .hero h2 {
@@ -122,7 +102,6 @@ section.niche {
   margin-bottom: 25px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  position: relative;
 }
 
 section.niche h2 {
@@ -132,72 +111,4 @@ section.niche h2 {
 }
 
 section.niche ul {
-  list-style: disc;
-  margin-left: 20px;
-}
-
-section.niche ul li {
-  margin-bottom: 8px;
-}
-
-/* ===== Blocs AdSense ===== */
-.adsbygoogle {
-  display: block !important;
-  margin: 20px 0;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-/* ===== Footer ===== */
-footer {
-  background-color: #1a1a1a;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-}
-
-footer nav a {
-  color: #fff;
-  margin: 0 8px;
-  transition: color 0.3s ease;
-}
-
-footer nav a:hover {
-  color: #0077cc;
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .hamburger {
-    display: block;
-  }
-
-  nav ul.menu {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  nav ul.menu li a {
-    display: block;
-    width: 100%;
-    padding: 10px 0;
-  }
-
-  .hero h2 {
-    font-size: 1.6rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
-  section.niche h2 {
-    font-size: 1.3rem;
-  }
-}
+  list
