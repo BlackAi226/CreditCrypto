@@ -1,25 +1,51 @@
-// ===== Menu mobile toggle =====
+// ===============================
+// Script principal Crédit Crypto
+// ===============================
 document.addEventListener('DOMContentLoaded', function () {
+  const header = document.querySelector('header');
   const menu = document.querySelector('nav ul.menu');
   const menuItems = menu.querySelectorAll('li a');
 
-  // Création d’un bouton hamburger
+  // Création du bouton hamburger
   const hamburger = document.createElement('div');
   hamburger.classList.add('hamburger');
-  hamburger.innerHTML = '&#9776;'; // symbole menu
-  document.querySelector('header').prepend(hamburger);
+  hamburger.setAttribute('aria-label', 'Menu');
+  hamburger.setAttribute('role', 'button');
+  hamburger.setAttribute('tabindex', '0');
+  hamburger.innerHTML = '&#9776;'; // ☰
+  header.prepend(hamburger);
 
-  hamburger.addEventListener('click', () => {
+  // Toggle menu
+  const toggleMenu = () => {
     menu.classList.toggle('open');
+    hamburger.classList.toggle('active');
+    hamburger.innerHTML = menu.classList.contains('open') ? '✖' : '&#9776;';
+  };
+
+  hamburger.addEventListener('click', toggleMenu);
+
+  // Accessibilité clavier (entrée/ espace active le menu)
+  hamburger.addEventListener('keydown', (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      toggleMenu();
+    }
   });
 
   // Fermer menu quand on clique sur un lien
   menuItems.forEach(item => {
     item.addEventListener('click', () => {
       if (menu.classList.contains('open')) {
-        menu.classList.remove('open');
+        toggleMenu();
       }
     });
+  });
+
+  // Fermer si clic à l’extérieur
+  document.addEventListener('click', (e) => {
+    if (menu.classList.contains('open') && !header.contains(e.target)) {
+      toggleMenu();
+    }
   });
 
   // Smooth scroll pour tous les liens internes
@@ -29,9 +55,9 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         const targetId = this.getAttribute('href').slice(1);
         const target = document.getElementById(targetId);
-        if(target) {
+        if (target) {
           window.scrollTo({
-            top: target.offsetTop - 60, // ajuster si header fixe
+            top: target.offsetTop - header.offsetHeight, // ajuste selon hauteur du header
             behavior: 'smooth'
           });
         }
@@ -40,11 +66,23 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// ===== Popups ou notifications incitant à revenir (optionnel) =====
+// ===============================
+// Popups manipulation inversée (optionnel)
+// ===============================
 /*
 window.addEventListener('load', () => {
   setTimeout(() => {
-    alert("Reviens vite ! De nouvelles opportunités t'attendent sur Crédit Crypto !");
-  }, 15000); // 15 secondes après l'ouverture de la page
+    const popup = document.createElement('div');
+    popup.classList.add('popup-manip');
+    popup.innerHTML = `
+      <p>😈 Tu penses partir ? Les vraies opportunités sont encore devant toi...</p>
+      <button id="closePopup">Je reste 🔥</button>
+    `;
+    document.body.appendChild(popup);
+
+    document.getElementById('closePopup').addEventListener('click', () => {
+      popup.remove();
+    });
+  }, 15000);
 });
 */
